@@ -1,0 +1,35 @@
+background yes
+update_interval 1.0
+total_run_times 0
+
+net_avg_samples 2
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+gap_x 930
+gap_y 40
+minimum_size 190 350
+maximum width 320
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+
+
+
+
+TEXT
+SERVICE ${alignc}ADDRESS ${alignr}DPORT
+
+${tcp_portmon 1 65535 rservice 0}${alignc}${tcp_portmon 1 65535 rip 0}${alignr 1}${tcp_portmon 1 65535 rport 0}
+${tcp_portmon 1 65535 rservice 1}${alignc}${tcp_portmon 1 65535 rip 1}${alignr 1}${tcp_portmon 1 65535 rport 1}
+${tcp_portmon 1 65535 rservice 2}${alignc}${tcp_portmon 1 65535 rip 2}${alignr 1}${tcp_portmon 1 65535 rport 2}
+${tcp_portmon 1 65535 rservice 3}${alignc}${tcp_portmon 1 65535 rip 3}${alignr 1}${tcp_portmon 1 65535 rport 3}
+${tcp_portmon 1 65535 rservice 4}${alignc}${tcp_portmon 1 65535 rip 4}${alignr 1}${tcp_portmon 1 65535 rport 4}
+${tcp_portmon 1 65535 rservice 5}${alignc}${tcp_portmon 1 65535 rip 5}${alignr 1}${tcp_portmon 1 65535 rport 5}
+${tcp_portmon 1 65535 rservice 6}${alignc}${tcp_portmon 1 65535 rip 6}${alignr 1}${tcp_portmon 1 65535 rport 6}
+${tcp_portmon 1 65535 rservice 7}${alignc}${tcp_portmon 1 65535 rip 7}${alignr 1}${tcp_portmon 1 65535 rport 7}
+${tcp_portmon 1 65535 rservice 8}${alignc}${tcp_portmon 1 65535 rip 8}${alignr 1}${tcp_portmon 1 65535 rport 8}
