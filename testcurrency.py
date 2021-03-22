@@ -4,8 +4,8 @@ Unit tests for module currency
 When run as a script, this module invokes several procedures that test
 the various functions in the module currency.
 
-Author: Alfredo Elias Rivas
-Date:   03/21/2021
+Author: REDACTED
+Date:   REDACTED
 """
 
 
