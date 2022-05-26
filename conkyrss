@@ -1,3 +1,5 @@
+# Date: Oct 29, 2017
+
 conky.config = {
     alignment = 'top_right',
     background = false,
