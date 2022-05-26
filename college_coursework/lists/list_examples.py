@@ -4,11 +4,10 @@ Module demonstrating mutable list functions.
 Neither of these functions should use for-lopps.  Instead, they should use 
 list methods.
 
-Author: Alfredo Elias Rivas
+Author: AERivas
 Date: 09-15-2021 
 Updated: 05-18-2022
 """
-
 
 def put_in(alist: list,value: int) -> None:
     """
@@ -30,7 +29,6 @@ def put_in(alist: list,value: int) -> None:
         alist.sort()
     else:
         alist.append(value)
-
 
 def rotate(alist: list) -> None:
     """
