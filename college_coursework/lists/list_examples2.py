@@ -3,13 +3,12 @@ Module with non-mutable functions on lists.
 
 All of these functions make use of accumulators that make new lists.
 
-Author: Alfredo Elias Rivas
+Author: AERivas
 Date: 09-15-2021
 Updated: 05/18/2022 [revised code, added type hints, enforced preconditions.]
 """
 
-
-def clamp(alist: list[int,float], min_value: int, max_value: int) -> list:
+def clamp(alist: list[int, float], min_value: int, max_value: int) -> list:
     """
     Returns a copy of alist where every element is between min_value and max_value.
     
@@ -42,7 +41,6 @@ def clamp(alist: list[int,float], min_value: int, max_value: int) -> list:
             result[index] = min_value
         if value > max_value:    
             result[index] = max_value
-    
     return result
 
 def removeall(alist: list, n: int) -> list:
