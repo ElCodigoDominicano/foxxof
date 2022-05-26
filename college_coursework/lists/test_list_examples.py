@@ -46,7 +46,6 @@ class Tester(unittest.TestCase):
         self.assertEqual(None,result)
         self.assertEqual(['a','aa','aab','ab','b','ce'],alist)
 
-
     def test_rotate(self):
         """
         Test procedure for rotate
@@ -74,9 +73,6 @@ class Tester(unittest.TestCase):
         result = rotate(alist)
         self.assertEqual(None,result)
         self.assertEqual([9],alist)
-
-
-# Script code
+        
 if __name__ == '__main__':
     unittest.main()
-    print('Module funcs is working correctly')
