@@ -1,1 +1,14 @@
-various updated python college course files(Jan2021 - Nov2021)
+# Various updated python college course files(Jan2021 - Nov2021)
+
+Files within are functions dealing with various data types from
+strings, floats, integers, lists, tuples, nested lists( 2d tables ),
+sets, dictionaries to files such as  csv and JSON files, as well as
+dealing with timezones, time aware objects, etc.
+
+currently updating all my files.  these will include.. 
+- unittests, 
+- type hinting,
+- assert statements(for enforcing the preconditions)
+- tuple/list/set comprehensions
+- ternary operators and more
+- in short better code readability....
