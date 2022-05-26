@@ -6,6 +6,7 @@
 - Unit-Testing
 - Data Science
 - Containerization
+- BlackHat (Demonstrational Only)
 - Security
 - Web-Services
 
