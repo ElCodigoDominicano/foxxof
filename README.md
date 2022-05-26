@@ -2,7 +2,7 @@
 - Functional Programming
 - Object Oriented Programming
 - Socket Programming
-- Asynchronous, Multi-Threaded, Multi-Process
+- Asynchronous, Multithreading, Multiprocess
 - Unit-Testing
 - Data Science
 - Containerization
