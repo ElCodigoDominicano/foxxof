@@ -64,8 +64,7 @@ def crossout(table: list[list], row: int, col: int) -> list[list]:
         if row == index:
             del result[row]
             for col_index, col_value in enumerate(result[0:]):  
-                del result[col_index][col]        
-                
+                del result[col_index][col]
     return result
 
 # Uncomment lines below to run 
