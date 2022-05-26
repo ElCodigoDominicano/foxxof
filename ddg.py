@@ -1,4 +1,4 @@
-#Fox crawler
+#Fox crawler -  Dec 5, 2017
 import requests
 from bs4 import BeautifulSoup
 
