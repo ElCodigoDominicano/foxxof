@@ -7,7 +7,7 @@ the function should not use a loop or recursion.
 Author: Alfredo Elias Rivas
 Date: 09-15-2021 -> 05-17-2022 [updated to use type annotation and assert statements]
 """
-
+from typing import Tuple
 
 def replace_first_val(tup: tuple[int, ...], a: int, b: int) -> tuple[int, ...]:
     """
@@ -26,8 +26,9 @@ def replace_first_val(tup: tuple[int, ...], a: int, b: int) -> tuple[int, ...]:
     Parameter b: The value to replace with
     Precondition: b is an int
     """
-    assert type(a) == int and type(b) == int, f'This function parameters uses the int data type not {type(a)} and {type(b)}'
-    assert type(tup) == tuple, f'This function only uses the tuple datatype.. not {type(tup)}'
+    assert isinstance(a, int), 'parameter a must be an integer'
+    assert isinstance(b, int), 'parameter b mist be an integer'
+    assert isinstance(tuple, Tuple), f'This function only uses the tuple datatype.. not {type(tup)}'
     
     bee = list(tup)
     if a in tup:
