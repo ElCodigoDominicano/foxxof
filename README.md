@@ -1,9 +1,10 @@
 # Wide variety of python code from 2017 - Present
-- Functional Programming (mathematic, scientific, data manipulation)
-- Object Oriented Programming (class modeling modeling)
-- Socket Programming (network, communications)
+- Functional Programming
+- Object Oriented Programming
+- Socket Programming
 - Asynchronous, Multithreading, Multiprocess
-- Unit-Testing
+- Unit testing
+- Type hinting 
 - Containerization
 - BlackHat (Demonstrational Only)
 - Security
