@@ -2,12 +2,12 @@
 Functions for parsing time values and determining daylight hours.
 
 Author: AERivas
-Date:   06-13-2022
+Date: 06-23-2022
 """
 from dateutil.parser import parse
 import pytz
 import datetime
-
+import itertools
 
 def str_to_time(timestamp, tz=None):
     """
@@ -33,9 +33,6 @@ def str_to_time(timestamp, tz=None):
     Precondition: tz is either None, a string naming a valid time zone,
     or a time zone OFFSET.
     """
-    # HINT: Use the code from the previous exercise and update the timezone
-    # Use localize if timezone is a string; otherwise replace the timezone if not None
-
     if isinstance(tz, str):
             tz = pytz.timezone(tz)
             parsed = parse(timestamp)
@@ -45,16 +42,12 @@ def str_to_time(timestamp, tz=None):
         timezone_info = parsed.tzinfo
         if timezone_info is None and tz is None:
             return parsed
-        
         if timezone_info is not None and tz is not None:
-            return parsed.replace(tzinfo=timezone_info)    
-
+            return parsed.replace(tzinfo=timezone_info) 
         if timezone_info is not None and tz is None:
             return parsed.replace(tzinfo=timezone_info)
-
         if timezone_info is None and tz is not None:
             return parsed.replace(tzinfo=tz)
-    
         else:
             return parsed.replace(tzinfo=tz)
     except:
@@ -98,36 +91,23 @@ def daytime(time,daycycle):
     Parameter daycycle: The daycycle dictionary
     Precondition: daycycle is a valid daycycle dictionary, as described above
     """
-    tz = pytz.timezone(daycycle["timezone"]) 
-    for key,value in daycycle.items():
-        if key[0:4].isnumeric():
-            for month_day, rise_set_dict in value.items():
-                year,month,day = int(key),int(month_day[0:2]),int(month_day[3:5])
-                sunrise = rise_set_dict["sunrise"]
-                sunset = rise_set_dict["sunset"]
-                rise_str = str(year)+'-'+str(month)+'-'+str(day)+'-'+'T'+sunrise
-                set_str = str(year)+'-'+str(month)+'-'+str(day)+'-'+'T'+sunset
-                rise_obj = str_to_time(rise_str)
-                set_obj = str_to_time(set_str)
-                rise_zone = tz.localize(rise_obj)
-                set_zone = tz.localize(set_obj)
-                
-                if time.year == year and time.month == month and time.day == day:
-                    time_pass_rise = time > rise_zone
-                    time_pass_set = time > set_zone
-                    time_before_set = time < set_zone
-                    time_before_rise = time < rise_zone
-                    if time_before_rise and time_pass_set:
-                        return False
-                    
-                    if time_pass_rise and time_pass_set:
-                        return False
-                    
-                    if time_pass_rise and time_before_set:
-                        return True
-                    
-                    if time_before_rise and time_before_set:
-                        return False
-                   
-                    else:
-                        return False
+    tz = pytz.timezone(daycycle["timezone"])
+    years = list(daycycle.keys())[5:]
+    mnthday_list_of_dict = list(daycycle.values())[5:]
+    list_of_mnthsdays = list(mnthday_list_of_dict[0].keys())
+    for year, string in itertools.product(years, list_of_mnthsdays):
+        seperator = string.find("-")
+        year = int(year)
+        months = int(string[:seperator])
+        days = int(string[seperator+1:])
+        rise_set_dict = mnthday_list_of_dict[0][string]
+        sunrise_time = rise_set_dict["sunrise"]
+        sunset_time = rise_set_dict["sunset"]      
+        rise_str = str(year)+'-'+str(months)+'-'+str(days)+'-'+'T'+sunrise_time
+        set_str = str(year)+'-'+str(months)+'-'+str(days)+'-'+'T'+sunset_time
+        rise_obj = str_to_time(rise_str)
+        set_obj = str_to_time(set_str)
+        rise_zone = tz.localize(rise_obj)
+        set_zone = tz.localize(set_obj)
+        if time.year == year and time.month == months and time.day == days: 
+            return True if rise_zone <= time <= set_zone else False
