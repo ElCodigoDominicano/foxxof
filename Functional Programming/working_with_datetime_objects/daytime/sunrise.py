@@ -6,7 +6,6 @@ Date: 06-23-2022
 """
 from dateutil.parser import parse
 import pytz
-import datetime
 import itertools
 
 def str_to_time(timestamp, tz=None):
