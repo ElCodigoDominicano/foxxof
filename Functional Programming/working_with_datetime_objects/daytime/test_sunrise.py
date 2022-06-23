@@ -2,13 +2,14 @@
 A completed test script for the str_to_time and daytime functions
 
 Author: AERivas
-Date: 06-14-2022
+Date: 06-23-2022
 """
 import unittest
 import os.path
 import json
-
 from sunrise import str_to_time, daytime
+from dateutil.parser import parse
+from pytz import timezone
 
 TIMES = [
     ('2015-06-05T07:00:00',True,True),
@@ -21,9 +22,9 @@ TIMES = [
     ('2015-06-05T17:00:00',True,True),
     ('2016-11-01T07:00:00',True,True),  
     ('2016-11-01T17:00:00',False,False),
-    ('2017-11-17T07:00:00',False,True), 
+    ('2017-11-17T07:00:00',True,True), 
     ('2017-11-17T17:00:00',False,False),
-    ('2018-06-05T07:00:00',True,True),  
+    ('2018-06-05T07:00:00',True,True),      
     ('2018-06-05T17:00:00',True,True),
     ('2018-11-15T07:00:00',True,True),  
     ('2018-11-15T17:00:00',False,False),
@@ -49,14 +50,10 @@ class Tester(unittest.TestCase):
         Test procedure for the function str_to_time()
         """
         print('Testing str_to_time()')
-        
-        from dateutil.parser import parse
-        from pytz import timezone
-        
+       
         for string in STRINGS:
             result = str_to_time(string)
             self.assertEqual(parse(string), result)
-
             if len(string) == 16:
                 correct = parse(string+'-4:00')
                 result = str_to_time(string, correct.tzinfo)
