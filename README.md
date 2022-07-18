@@ -1,4 +1,4 @@
-# Wide variety of python code from 2017 - Present
+# Wide variety of python functions and scripts from 2017 - Present
 - Functional Programming
 - Object Oriented Programming
 - Socket Programming
