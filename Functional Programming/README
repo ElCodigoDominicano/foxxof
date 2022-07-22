@@ -1,5 +1,6 @@
 These are all my college course files[from january 2021 - november 2021] 
-updated to reflect some of the advancements within the python programming language...
+updated to reflect some of the advancements within the python programming language
+such as unittest implementations, object oriented design, and type hinting
 most files have test files which can be ran within an IDE or terminal 
-as long as a recent version of python is installed on the machine
-these functions should work most dont use any 3rd party libraries...
+as long as a recent version of python(v3.6+) is installed on the machine
+these functions are coded in a way 3rd party libraries are not a requirement
