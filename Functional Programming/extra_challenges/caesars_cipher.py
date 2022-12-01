@@ -76,9 +76,6 @@ def decode(text: str, n: int):
     alpha: str = "abcdefghijklmnopqrstuvwxyz"
     for i in text:
         result += alpha[alpha.index(i) - n ]
-
-        # else:
-        #     result = "Nope."
     return result
 
 if __name__ == '__main__':
