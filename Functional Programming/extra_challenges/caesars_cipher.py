@@ -1,37 +1,37 @@
 """
-    A module to encode with Caesar-style substitution ciphers.
+A module to encode with Caesar-style substitution ciphers.
 
-    Early (pre-20th century) encrypted messages letter substitution techniques.  To encrypt
-    a message like this:
+Early (pre-20th century) encrypted messages letter substitution techniques.  To encrypt
+a message like this:
+    
+    Attack at dawn!
 
-        Attack at dawn!
+you first removed all punctuation, spaces, and capitalization, like this:
+    
+    attackatdawn
+    
+The idea is that the reader can add all that information just inferring it from the text.
 
-    you first removed all punctuation, spaces, and capitalization, like this:
+Now that the message only has letters, you then substitute each letter for another.  In 
+Caesar's original cipher, each letter was shifted 3 positions, wrapping around at the end.  
+So 'a' became 'd', 'b' become 'e',...,'w' became 'z', 'x' became 'a', 'y' became 'b' and 
+'z' became 'c'. So this message becomes 
+    
+    dwwdfndwgdzq
 
-        attackatdawn
+To decrypt the message, you simply shift back in the reverse direction.  Or, you can just 
+shift 26-3 = 23 spots and you will wrap back around to the original message.  Because of
+this, rot-13 (shifting by 13 positions instead of 3) is another popular technique. 
+Encoding a message with rot-13 twice gives you the original message.
 
-    The idea is that the reader can add all that information just inferring it from the text.
+This way of encoding messages is no longer used for secure communication, because it
+is so easy to break.  But rot-13 can still be found on some Internet message boards
+where people use it to hide movie spoilers and for other light-hearted topics.
 
-    Now that the message only has letters, you then substitute each letter for another.  In 
-    Caesar's original cipher, each letter was shifted 3 positions, wrapping around at the end.  
-    So 'a' became 'd', 'b' become 'e',...,'w' became 'z', 'x' became 'a', 'y' became 'b' and 
-    'z' became 'c'. So this message becomes 
-
-        dwwdfndwgdzq
-
-    To decrypt the message, you simply shift back in the reverse direction.  Or, you can just 
-    shift 26-3 = 23 spots and you will wrap back around to the original message.  Because of
-    this, rot-13 (shifting by 13 positions instead of 3) is another popular technique. 
-    Encoding a message with rot-13 twice gives you the original message.
-
-    This way of encoding messages is no longer used for secure communication, because it
-    is so easy to break.  But rot-13 can still be found on some Internet message boards
-    where people use it to hide movie spoilers and for other light-hearted topics.
-
-    Author: AERivas
-    Date: 06-04-2021
-    Updated: 06-05-2022
-    latest: 11-30-2022
+Author: AERivas
+Date: 06-04-2021
+Updated: 06-05-2022
+latest: 11-30-2022
 """
 def encode(text: str, n: int) -> str:
     """
@@ -56,10 +56,11 @@ def encode(text: str, n: int) -> str:
     assert 0 <= n < 26, 'This exceeds the maximum number allowed.'
 
     result: str = ''
-    alpha: str = 'abcdefghijklmnopqrstuvwxyz' * 2
+    alpha: str = 'abcdefghijklmnopqrstuvwxyz'
     for i in text.replace(" ",""):
         if i.isalpha():
-             result += alpha[alpha.index(i) + n]
+            i = i.lower()
+            result += alpha[alpha.index(i)]
         else:
             result = "Nope."
     return result
@@ -72,20 +73,24 @@ def decode(text: str, n: int):
     assert 0 <= n < 26, 'This exceeds the maximum number allowed.'
     
     result: str = ""
-    alpha: str = "abcdefghijklmnopqrstuvwxyz" * 2
-    for i in text.replace(" ", ""):
-        if i.isalpha():
-            result += alpha[alpha.index(i) - n]
-        else:
-            result = "Nope."
+    alpha: str = "abcdefghijklmnopqrstuvwxyz"
+    for i in text:
+        result += alpha[alpha.index(i) - n ]
+
+        # else:
+        #     result = "Nope."
     return result
 
 if __name__ == '__main__':
     first_message =  encode("land of the free",3)
     second_message = encode("home of the brave",13)
+    third_message = encode("THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",23)
     
     print(first_message)
     print(decode(first_message,3))
     
     print(second_message)
-    print(decode(second_message,13))
+    print(decode(second_message,3))
+
+    print(third_message)
+    print(decode(third_message,3))
