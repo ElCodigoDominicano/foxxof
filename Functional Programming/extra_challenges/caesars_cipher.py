@@ -31,8 +31,10 @@ where people use it to hide movie spoilers and for other light-hearted topics.
 Author: AERivas
 Date: 06-04-2021
 Updated: 06-05-2022
-latest: 11-30-2022
+latest: 12-07-2022
 """
+import string
+
 def encode(text: str, n: int) -> str:
     """
     Returns the text encoded by shifting each letter by n positions.
@@ -54,16 +56,20 @@ def encode(text: str, n: int) -> str:
     assert isinstance(text, str), f'Parameter text must be a string not ->{repr(text)}.'
     assert isinstance(n, int), f'Parameter n: must be an integer not -> {repr(n)}.'
     assert 0 <= n < 26, 'This exceeds the maximum number allowed.'
-
+    
     result: str = ''
-    alpha: str = 'abcdefghijklmnopqrstuvwxyz'
-    for i in text.replace(" ",""):
-        if i.isalpha():
+    alpha: str = 'abcdefghijklmnopqrstuvwxyz' * 2
+    
+    for i in text.replace(" ", ""):
+        if i.isupper():
             i = i.lower()
-            result += alpha[alpha.index(i)]
+            result += alpha[alpha.index(i) + n]
+        elif i in string.punctuation:
+            i.replace(string.punctuation,"")
         else:
-            result = "Nope."
+            result += alpha[alpha.index(i) + n]
     return result
+
 
 
 def decode(text: str, n: int):
@@ -73,9 +79,9 @@ def decode(text: str, n: int):
     assert 0 <= n < 26, 'This exceeds the maximum number allowed.'
     
     result: str = ""
-    alpha: str = "abcdefghijklmnopqrstuvwxyz"
+    alpha: str = "abcdefghijklmnopqrstuvwxyz" 
     for i in text:
-        result += alpha[alpha.index(i) - n ]
+        result += alpha[alpha.index(i) - n]
     return result
 
 if __name__ == '__main__':
