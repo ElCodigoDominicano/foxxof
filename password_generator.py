@@ -2,7 +2,9 @@
  Random password generator
 
  using pythons built-in secrets and string 
-
+ 
+ Author: AERivas
+ Date: 12/03/2022
 """
 import string
 import secrets
@@ -11,7 +13,6 @@ def the_maker(choice: str, length: int):
     assert isinstance(length, int), f"The length must be an integer [0-9] not {repr(length)}."
     assert isinstance(choice, str), f"The choice must be a string not {repr(choice)}."
     assert 8 <= length < 65556, f"The length must be any value from 8-65555" 
-
 
     kitchen_sink: str = '' 
     if choice == 'lower':
