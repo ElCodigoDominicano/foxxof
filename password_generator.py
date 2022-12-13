@@ -2,9 +2,8 @@
  Random password generator
 
  using pythons built-in secrets and string 
- 
  Author: AERivas
- Date: 12/03/2022
+ Date: 12/12/2022
 """
 import string
 import secrets
@@ -25,9 +24,12 @@ def the_maker(choice: str, length: int):
         kitchen_sink += string.punctuation
     elif choice == 'kitchen_sink':
         kitchen_sink += string.ascii_letters + string.digits + string.punctuation
-
-    the_key = ''.join(secrets.choice(kitchen_sink) for i in range (length))
+    try: 
+        the_key = ''.join(secrets.choice(kitchen_sink) for i in range (length))
+    except:
+        raise RuntimeError("Please use one of the approved options") from None
     return the_key
+
 
 if __name__ == '__main__':
     message = (f"""
@@ -36,8 +38,8 @@ if __name__ == '__main__':
             [upper] => {string.ascii_uppercase}
             [digits] => {string.digits}
             [punct] => {string.punctuation}
-            [kitchen_sink] => a mixture of all of the above: 
-        """)
+            [kitchen_sink] => a mixture of all of the above 
+            > """)
 
     time_to_choose = str(input(message))
     length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
