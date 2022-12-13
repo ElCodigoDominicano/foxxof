@@ -17,27 +17,33 @@ def the_maker(choice: str, length: int):
     kitchen_sink: str = '' 
     if choice == 'lower':
         kitchen_sink += string.ascii_lowercase
-    if choice == 'upper':
+    elif choice == 'upper':
         kitchen_sink += string.ascii_uppercase
-    if choice == 'digits':
+    elif choice == 'digits':
         kitchen_sink += string.digits
-    if choice == 'punct':
+    elif choice == 'punct':
         kitchen_sink += string.punctuation
-    if choice == 'kitchen_sink':
+    elif choice == 'kitchen_sink':
         kitchen_sink += string.ascii_letters + string.digits + string.punctuation
 
     the_key = ''.join(secrets.choice(kitchen_sink) for i in range (length))
     return the_key
 
-
 if __name__ == '__main__':
-    message = ("""
+    message = (f"""
         Options:
-            [lower] => a-z
-            [upper] => A-Z
-            [digits] => 0-9
-            [punct] => !"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~
-            [kitchen_sink] => a mixture of all of the above: """)
+            [lower] => {string.ascii_lowercase}
+            [upper] => {string.ascii_uppercase}
+            [digits] => {string.digits}
+            [punct] => {string.punctuation}
+            [kitchen_sink] => a mixture of all of the above: 
+        """)
+
+    time_to_choose = str(input(message))
+    length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
+    der_wille_zur_macht = the_maker(time_to_choose, length)
+    print(der_wille_zur_macht)
+    
 
     time_to_choose = str(input(message))
     length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
