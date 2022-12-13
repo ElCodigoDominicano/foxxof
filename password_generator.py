@@ -43,10 +43,3 @@ if __name__ == '__main__':
     length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
     der_wille_zur_macht = the_maker(time_to_choose, length)
     print(der_wille_zur_macht)
-    
-
-    time_to_choose = str(input(message))
-    length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
-    der_wille_zur_macht = the_maker(time_to_choose, length)
-    print(der_wille_zur_macht)
-    
