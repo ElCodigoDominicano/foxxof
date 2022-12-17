@@ -51,7 +51,9 @@ def find_web_images():
                 list_of_image_filenames.append(files_and_folder_names)
 
     if len(list_of_image_filenames) == 0:
-       raise NoImageFile(f"No image detected within the current working directory => {os.getcwd}")
+       raise NoImageFile(
+           f"No image detected within the current working directory => {os.getcwd}"
+       )
     print(list_of_image_filenames)
   
   
