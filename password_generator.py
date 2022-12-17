@@ -29,10 +29,10 @@ def the_maker(choice: str, length: int):
     except:
         raise RuntimeError("Please use one of the approved options") from None
     return the_key
-
-
-if __name__ == '__main__':
-    message = (f"""
+   
+   
+def main():
+  message = (f"""
         Options:
             [lower] => {string.ascii_lowercase}
             [upper] => {string.ascii_uppercase}
@@ -45,3 +45,8 @@ if __name__ == '__main__':
     length = int(input("Enter the length of the password you want generated [ 8 - 65555 ]: "))
     der_wille_zur_macht = the_maker(time_to_choose, length)
     print(der_wille_zur_macht)
+    
+
+if __name__ == '__main__':
+    main()
+   
