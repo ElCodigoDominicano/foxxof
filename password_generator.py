@@ -1,6 +1,16 @@
 """
- Random password generator
-
+ Random passphrase generator
+ 
+ when ran the user is given a choice from 1 of 5 options provided by the 
+ generator and is provided with a length (8-65556) for the passphrase of their 
+ choosing:
+ 
+ lower => lowercase alphabet (a-z)
+ upper => uppercase alphabet(A-Z)
+ digits => numerical (0-9)
+ punct => punctuations (!@#$...)
+ kitchen_sink => a mixture of all of the above 
+ 
  using pythons built-in secrets and string 
  Author: AERivas
  Date: 12/12/2022
