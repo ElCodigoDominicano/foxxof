@@ -1,18 +1,19 @@
 """
-  A script that can detect if web images are in the same 
-  working directory as the script itself written in python using its built-in os module.
+  A script that can detect if web images are in the same working directory as 
+  the script itself written in python using its built-in os module.
   
   works on many operating systems; works on Manjaro linux Works in Windows 11. 
-  (I can't afford a mac to test it on a OSX system)
+  (I Haven't tried it on a MACOSX system)
   
-  More information about images used in modern websites:
+  More information about images used on modern websites:
     https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+  
   Author: AERivas
   Date: 12/15/2022
 """
 import os
 
-WEB_IMAGE_TYPES: list[str] = [
+WEBIMAGETYPES: list[str] = [
     ".jpeg",
     ".jpg",
     ".jfif",
@@ -30,28 +31,29 @@ WEB_IMAGE_TYPES: list[str] = [
     ".ico",
     ".cur"]
 
-  
+
+# Per PEP-0317 => https://peps.python.org/pep-0317/
 class NoImageFile(FileNotFoundError):
-    """ custom err msg """
-    def __init__(self):
-        raise FileNotFoundError(f"No compatible web image detected within {os.getcwd()}") from None
+    pass
 
 
 def find_web_images():
-    """ slightwork """
-    list_of_image_file_names: list[str] = []
+    """ Displays a list containing the detected web images filename
+    and file extensions obtained from a current working directory
+    including hidden image files ex: .temp.jpg"""
+    
+    list_of_image_filenames: list[str] = []
     for files_and_folder_names in os.listdir():
         dot_notation = files_and_folder_names.rfind(os.extsep)
         file_type = files_and_folder_names[dot_notation:]
         if os.path.isfile(files_and_folder_names):
-            if file_type in WEB_IMAGE_TYPES:
-                list_of_image_file_names.append(files_and_folder_names)
+            if file_type in WEBIMAGETYPES:
+                list_of_image_filenames.append(files_and_folder_names)
 
-    if len(list_of_image_file_names) == 0:
-       raise NoImageFile from None
-
-    return list_of_image_file_names
+    if len(list_of_image_filenames) == 0:
+       raise NoImageFile(f"No image detected within the current working directory => {os.getcwd}")
+    print(list_of_image_filenames)
   
   
 if __name__ == "__main__":
-  print(find_web_images())
+    find_web_images()
