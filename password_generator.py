@@ -32,7 +32,7 @@ def the_maker(choice: str, length: int):
    
    
 def main():
-  message = (f"""
+    message = (f"""
         Options:
             [lower] => {string.ascii_lowercase}
             [upper] => {string.ascii_uppercase}
