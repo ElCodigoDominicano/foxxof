@@ -1,36 +1,40 @@
 """
  Random password generator
  using pythons built-in secrets and string 
- 
+
  1) upon running script you are presented 5 options:
  [lower] => a-z
  [upper] => A-Z
  [digits] => 0-9
  [puncts] => !@#$^...
  [kitchen_sink] => io1_2TR@#$
- 
+
  choose one of the 5.
- 
- 2) you will be asked to enter a length for the password: 8-65556 
- 
+
+ 2) you will be asked to enter a length for the password: 8-65556
+
  3) the locksmith will create the key and display it for you
- 
+
  Author: AERivas
  Date: 12/12/2022
 """
 import string
 import secrets
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 def welcome_message():
-    print(f"""
+    return f"""
         Options:
             [lower] => {string.ascii_lowercase}
             [upper] => {string.ascii_uppercase}
             [digits] => {string.digits}
             [punct] => {string.punctuation}
             [kitchen_sink] => a mixture of all of the above 
-            > """)
+            > """
 
 
 def password_response_handler():
@@ -42,6 +46,7 @@ def password_response_handler():
         "kitchen_sink",
     ]
     kitchen_sink: str = ""
+
     while True:
         response = input("Enter an option:")
         if response in ACCEPTABLE_CHOICES:
@@ -57,8 +62,8 @@ def password_response_handler():
                 kitchen_sink += string.ascii_letters + string.digits + string.punctuation
             break
 
-        if response not in ACCEPTABLE_CHOICES:
-            print("That wasn't an acceptable option, please try again.")
+        if not response in ACCEPTABLE_CHOICES:
+            logger.error("That wasn't an acceptable option, please try again.")
             continue
     return kitchen_sink
 
@@ -69,10 +74,10 @@ def password_length_handler():
         try:
             password_length = int(input("Enter a length for the passphrase minimum 8 maximum 65556: "))
             if password_length < 8:
-                print("That value wasn't within range.")
+                logger.error("That value wasn't within range.")
                 continue
         except ValueError:
-            print(f"That isn't a numerical value.")
+            logger.error(f"That isn't a numerical value.")
             continue
         else:
             break
@@ -80,7 +85,8 @@ def password_length_handler():
 
 
 def the_locksmith():
-    welcome_message()
+    the_message = welcome_message()
+    print(the_message)
     response = password_response_handler()
     length = password_length_handler()
     the_key = ''.join(secrets.choice(response) for i in range(length))
@@ -88,4 +94,4 @@ def the_locksmith():
 
 
 if __name__ == '__main__':
-    the_maker()
+    the_locksmith()
