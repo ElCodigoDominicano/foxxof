@@ -1,5 +1,5 @@
 """
- a basic random password generator using pythons built-in secrets and string 
+ Random password generator using pythons built-in secrets and string
 
  1) upon running script you are presented 5 options:
  [lower] => a-z
@@ -22,7 +22,9 @@ import secrets
 import logging
 
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(message)s")
 
 
 def password_response_handler():
@@ -36,7 +38,7 @@ def password_response_handler():
     kitchen_sink: str = ""
 
     while True:
-        response = input("Enter an option:")
+        response = input("Enter an option: ")
         if response in ACCEPTABLE_CHOICES:
             if response == 'lower':
                 kitchen_sink += string.ascii_lowercase
@@ -82,11 +84,11 @@ def the_locksmith():
             [kitchen_sink] => a mixture of all of the above 
             > """
 
-    print(welcome_message)
+    logger.info(welcome_message)
     response = password_response_handler()
     length = password_length_handler()
     the_key: str = ''.join(secrets.choice(response) for i in range(length))
-    print(the_key)
+    logger.info(the_key)
 
 
 if __name__ == '__main__':
