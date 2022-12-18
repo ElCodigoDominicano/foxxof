@@ -1,6 +1,20 @@
 """
  Random password generator
  using pythons built-in secrets and string 
+ 
+ 1) upon running script you are presented 5 options:
+ [lower] => a-z
+ [upper] => A-Z
+ [digits] => 0-9
+ [puncts] => !@#$^...
+ [kitchen_sink] => io1_2TR@#$
+ 
+ choose one of the 5.
+ 
+ 2) you will be asked to enter a length for the password: 8-65556 
+ 
+ 3) the locksmith will create the key and display it for you
+ 
  Author: AERivas
  Date: 12/12/2022
 """
@@ -42,13 +56,13 @@ def password_response_handler():
             elif response == 'kitchen_sink':
                 kitchen_sink += string.ascii_letters + string.digits + string.punctuation
             break
-       
+
         if response not in ACCEPTABLE_CHOICES:
-            print("Try again")
-            continue        
+            print("That wasn't an acceptable option, please try again.")
+            continue
     return kitchen_sink
 
-   
+
 def password_length_handler():
     password_length: int = 0
     while True:
@@ -57,15 +71,15 @@ def password_length_handler():
             if password_length < 8:
                 print("That value wasn't within range.")
                 continue
-        except:
+        except ValueError:
             print(f"That isn't a numerical value.")
             continue
         else:
             break
     return password_length
-    
-    
-def the_maker():
+
+
+def the_locksmith():
     welcome_message()
     response = password_response_handler()
     length = password_length_handler()
