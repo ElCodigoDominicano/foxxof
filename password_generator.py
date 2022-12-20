@@ -60,25 +60,29 @@ def password_response_handler():
 
 def password_length_handler():
     password_length: int = 0
-    while True:
+    loop = True
+    while loop:
         try:
             password_length = int(input("Enter a length for the passphrase minimum 8 maximum 65537: "))
-            # in range of 0 to 7
-            if 0 <= password_length < 8:
+            # if negative value
+            if password_length < 0:
+                logger.error("Positive numbers only")
+                continue
+            # elif within range of 0 to 7
+            elif 0 <= password_length < 8:
                 logger.error("That value wasn't within range.")
                 continue
-            # range from 8 to 65537
-            if 8 <= password_length < 65538:
-                break
+            # elif within range of 8 to 65537
+            elif 8 <= password_length < 65538:
+                loop = False
+            # elif over the maximum 65537
+            elif password_length >= 65538:
+                logger.error(f"The value was greater then the maximum allowed.")
+                continue
         except ValueError:
             logger.error(f"That isn't a numerical value.")
             continue
-        # any value not within the range of 8 - 65537 and negative numbers
-        else:
-            logger.error(f"That value exceeds the maximum allowed")
-            continue
     return password_length
-
 
 
 def the_locksmith():
