@@ -73,6 +73,7 @@ def password_length_handler():
         except ValueError:
             logger.error(f"That isn't a numerical value.")
             continue
+        # any value not within the range of 8 - 65537 and negative numbers
         else:
             logger.error(f"That value exceeds the maximum allowed")
             continue
