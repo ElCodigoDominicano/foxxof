@@ -10,7 +10,7 @@
 
  choose one of the 5.
 
- 2) you will be asked to enter a length for the password: 8-65556
+ 2) you will be asked to enter a length for the password: 8-65537
 
  3) the locksmith will create the key and display it for you
 
@@ -62,7 +62,7 @@ def password_length_handler():
     password_length: int = 0
     while True:
         try:
-            password_length = int(input("Enter a length for the passphrase minimum 8 maximum 65556: "))
+            password_length = int(input("Enter a length for the passphrase minimum 8 maximum 65537: "))
             # in range of 0 to 7
             if 0 <= password_length < 8:
                 logger.error("That value wasn't within range.")
