@@ -63,25 +63,32 @@ def password_length_handler():
     while True:
         try:
             password_length = int(input("Enter a length for the passphrase minimum 8 maximum 65556: "))
-            if password_length < 8:
+            # in range of 0 to 7
+            if 0 <= password_length < 8:
                 logger.error("That value wasn't within range.")
                 continue
+            # range from 8 to 65537
+            if 8 <= password_length < 65538:
+                break
         except ValueError:
             logger.error(f"That isn't a numerical value.")
             continue
         else:
-            break
+            logger.error(f"That value exceeds the maximum allowed")
+            continue
     return password_length
 
 
+
 def the_locksmith():
+    random_example = ''.join(secrets.choice(string.ascii_letters+string.digits+string.punctuation)for i in range(8))
     welcome_message: str = f"""
         Options:
             [lower] => {string.ascii_lowercase}
             [upper] => {string.ascii_uppercase}
             [digits] => {string.digits}
             [punct] => {string.punctuation}
-            [kitchen_sink] => a mixture of all of the above 
+            [kitchen_sink] => {random_example} 
             > """
 
     logger.info(welcome_message)
@@ -93,3 +100,4 @@ def the_locksmith():
 
 if __name__ == '__main__':
     the_locksmith()
+
