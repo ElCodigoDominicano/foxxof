@@ -11,7 +11,7 @@ def read_json(filename: str) -> dict:
     Returns the contents read from the JSON file filename.
     
     This function reads the contents of the file filename, and will use the json module
-    to covert these contents into a Python data value.  This value will either be a
+    to covert these contents into a Python data type.  This data type will either be a
     a dictionary or a list. 
     
     Parameter filename: The file to read
